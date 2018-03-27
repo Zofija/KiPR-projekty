@@ -1,0 +1,147 @@
+%implements s0_b0_dfhme_Outputs "C"
+
+%function Outputs(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+real_T u0;
+real_T u1;
+real_T u2;
+%closefile localVarDecl
+%assign tlcOutputsFcnOfS0B0 = OpaqueTLCBlockFcn("Outputs", 0, 0, 0, 2)
+%assign tlcOutputsFcnOfS0B1 = OpaqueTLCBlockFcn("Outputs", 0, 1, 0, 2)
+%assign tlcOutputsFcnOfS0B2 = OpaqueTLCBlockFcn("Outputs", 0, 2, 0, 2)
+%assign tlcOutputsFcnOfS0B3 = OpaqueTLCBlockFcn("Outputs", 0, 3, 0, 2)
+%assign tlcOutputsFcnOfS0B4 = OpaqueTLCBlockFcn("Outputs", 0, 4, 0, 2)
+%assign tlcOutputsFcnOfS0B5 = OpaqueTLCBlockFcn("Outputs", 0, 5, 0, 2)
+%assign tlcOutputsFcnOfS0B6 = OpaqueTLCBlockFcn("Outputs", 0, 6, 0, 2)
+%assign tlcOutputsFcnOfS0B7 = OpaqueTLCBlockFcn("Outputs", 0, 7, 0, 2)
+%<SLibCGIRDumpSystemUserCode(0, "Output", "Header")>\
+%<SLibCGIRDumpSystemUserCode(0, "Output", "Body")>\
+%<tlcOutputsFcnOfS0B0>\
+/* Gain: '<Root>/Gain1' */
+SCARA_15_B.Gain1 = SCARA_15_P.Gain1_Gain * SCARA_15_B.SFunction1;
+/* Memory: '<Root>/Memory1' */
+SCARA_15_B.Memory1 = SCARA_15_DW.Memory1_PreviousInput;
+/* DataStoreRead: '<Root>/Data Store Read' */
+SCARA_15_B.DataStoreRead = SCARA_15_DW.WZ1;
+/* Switch: '<Root>/Switch' */
+if (SCARA_15_B.DataStoreRead > SCARA_15_P.Switch_Threshold) {
+    SCARA_15_B.Switch = SCARA_15_B.Memory1;
+} else {
+    SCARA_15_B.Switch = SCARA_15_B.DataStoreRead;
+}
+/* End of Switch: '<Root>/Switch' */
+
+/* Switch: '<Root>/Switch1' */
+if (SCARA_15_B.Switch >= SCARA_15_P.Switch1_Threshold) {
+    SCARA_15_B.Switch1 = SCARA_15_B.Switch;
+} else {
+    SCARA_15_B.Switch1 = SCARA_15_B.Memory1;
+}
+/* End of Switch: '<Root>/Switch1' */
+
+/* Sum: '<Root>/Sum' */
+SCARA_15_B.Sum = SCARA_15_B.Switch1 - SCARA_15_B.Gain1;
+/* Gain: '<Root>/reg P1' */
+SCARA_15_B.regP1 = SCARA_15_P.regP1_Gain * SCARA_15_B.Sum;
+/* Saturate: '<Root>/Saturation1' */
+u0 = SCARA_15_B.regP1;
+u1 = SCARA_15_P.Saturation1_LowerSat;
+u2 = SCARA_15_P.Saturation1_UpperSat;
+if (u0 > u2) {
+    SCARA_15_B.v1 = u2;
+} else if (u0 < u1) {
+    SCARA_15_B.v1 = u1;
+} else {
+    SCARA_15_B.v1 = u0;
+}
+/* End of Saturate: '<Root>/Saturation1' */
+
+/* RateLimiter: '<Root>/Rate Limiter1' */
+u0 = SCARA_15_B.v1 - SCARA_15_DW.PrevY;
+if (u0 > SCARA_15_P.RateLimiter1_RisingLim) {
+    SCARA_15_B.RateLimiter1 = SCARA_15_DW.PrevY + SCARA_15_P.RateLimiter1_RisingLim;
+} else if (u0 < SCARA_15_P.RateLimiter1_FallingLim) {
+    SCARA_15_B.RateLimiter1 = SCARA_15_DW.PrevY + SCARA_15_P.RateLimiter1_FallingLim;
+} else {
+    SCARA_15_B.RateLimiter1 = SCARA_15_B.v1;
+}
+SCARA_15_DW.PrevY = SCARA_15_B.RateLimiter1;
+/* End of RateLimiter: '<Root>/Rate Limiter1' */
+
+/* Gain: '<Root>/Gain2' */
+SCARA_15_B.Gain2 = SCARA_15_P.Gain2_Gain * SCARA_15_B.RateLimiter1;
+%<tlcOutputsFcnOfS0B1>\
+%<tlcOutputsFcnOfS0B2>\
+%<tlcOutputsFcnOfS0B3>\
+/* Gain: '<Root>/Gain3' */
+SCARA_15_B.Gain3 = SCARA_15_P.Gain3_Gain * SCARA_15_B.SFunction1_n;
+/* Memory: '<Root>/Memory2' */
+SCARA_15_B.Memory2 = SCARA_15_DW.Memory2_PreviousInput;
+/* DataStoreRead: '<Root>/Data Store Read1' */
+SCARA_15_B.DataStoreRead1 = SCARA_15_DW.WZ2;
+/* Switch: '<Root>/Switch2' */
+if (SCARA_15_B.DataStoreRead1 > SCARA_15_P.Switch2_Threshold) {
+    SCARA_15_B.Switch2 = SCARA_15_B.Memory2;
+} else {
+    SCARA_15_B.Switch2 = SCARA_15_B.DataStoreRead1;
+}
+/* End of Switch: '<Root>/Switch2' */
+
+/* Switch: '<Root>/Switch3' */
+if (SCARA_15_B.Switch2 >= SCARA_15_P.Switch3_Threshold) {
+    SCARA_15_B.Switch3 = SCARA_15_B.Switch2;
+} else {
+    SCARA_15_B.Switch3 = SCARA_15_B.Memory2;
+}
+/* End of Switch: '<Root>/Switch3' */
+
+/* Sum: '<Root>/Sum1' */
+SCARA_15_B.Sum1 = SCARA_15_B.Switch3 - SCARA_15_B.Gain3;
+/* Gain: '<Root>/reg P2' */
+SCARA_15_B.regP2 = SCARA_15_P.regP2_Gain * SCARA_15_B.Sum1;
+/* Saturate: '<Root>/Saturation2' */
+u0 = SCARA_15_B.regP2;
+u1 = SCARA_15_P.Saturation2_LowerSat;
+u2 = SCARA_15_P.Saturation2_UpperSat;
+if (u0 > u2) {
+    SCARA_15_B.v2 = u2;
+} else if (u0 < u1) {
+    SCARA_15_B.v2 = u1;
+} else {
+    SCARA_15_B.v2 = u0;
+}
+/* End of Saturate: '<Root>/Saturation2' */
+
+/* RateLimiter: '<Root>/Rate Limiter2' */
+u0 = SCARA_15_B.v2 - SCARA_15_DW.PrevY_f;
+if (u0 > SCARA_15_P.RateLimiter2_RisingLim) {
+    SCARA_15_B.RateLimiter2 = SCARA_15_DW.PrevY_f + SCARA_15_P.RateLimiter2_RisingLim;
+} else if (u0 < SCARA_15_P.RateLimiter2_FallingLim) {
+    SCARA_15_B.RateLimiter2 = SCARA_15_DW.PrevY_f + SCARA_15_P.RateLimiter2_FallingLim;
+} else {
+    SCARA_15_B.RateLimiter2 = SCARA_15_B.v2;
+}
+SCARA_15_DW.PrevY_f = SCARA_15_B.RateLimiter2;
+/* End of RateLimiter: '<Root>/Rate Limiter2' */
+
+/* Gain: '<Root>/Gain4' */
+SCARA_15_B.Gain4 = SCARA_15_P.Gain4_Gain * SCARA_15_B.RateLimiter2;
+%<tlcOutputsFcnOfS0B4>\
+%<tlcOutputsFcnOfS0B5>\
+%<tlcOutputsFcnOfS0B6>\
+%<tlcOutputsFcnOfS0B7>\
+%<SLibCGIRDumpSystemUserCode(0, "Output", "Trailer")>\
+%<SLibInsertSolverResetCode()>\
+%closefile cfgTxt
+%<cfgTxt>
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Outputs(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 2, fcnProtoType)>
+%<LibSetSystemField(system, "CachedOutputLocalVars", localVarDecl)>
+%endfunction

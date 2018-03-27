@@ -1,0 +1,1562 @@
+-- ****************************************************************************
+--
+--  Trace file: SCARA_215.trc
+--
+--  RTI1104 7.4 (02-May-2015)
+--  Mon Mar 26 09:20:08 2018
+--
+--  Used options:
+--    TRCGenerateVirtualBlocks      = 0
+--    TRCGenerateLabels             = 0
+--    TRCGenerateStates             = 0
+--    TRCGenerateDerivatives        = 0
+--    TRCGenerateParamValues        = 0
+--    TRCGenerateApplicationKeyword = 0
+--    TRCOnlyGlobals                = 0
+--    TRCIsOmitVdOn                 = 0
+--
+--  Trace file format: 2
+--
+--  (c) Copyright 2008, dSPACE GmbH. All rights reserved.
+--
+-- ****************************************************************************
+
+-- ******** Keywords **********************************************************
+
+-- _application "SCARA_215.map"
+
+_genname     "RTI"
+_genversion  "7.4"
+_gendate     "03/26/2018 09:20:10"
+_description ""
+_author      "RTI1104 7.4 (02-May-2015)"
+_model       "SCARA_215.mdl"
+
+-- Default data type formats
+_floating_point_type(64,IEEE)
+_integer_type(32)
+
+-- No Data Capture blocks within model: use base sample time as sampling period
+sampling_period[0]
+{
+  value:       0.001
+  alias:       "HostService"
+  increment:   0.001
+  unit:        "s"
+}
+
+
+
+-- Type definitions for arrays
+typedef SCARA_215_ArrayDT8_2 uint(8)[2]
+typedef SCARA_215_ArrayDT8_8_2_Col col uint(8)[8][2]
+
+
+-- ******** Simulation control variables **************************************
+
+finalTime
+{
+ type:  flt(64,IEEE)*
+ alias: "finalTime"
+ desc:  "Simulation stop time. When reached, simState switches to STOP."
+ flags:  SYSTEM|READONLY
+ unit:  "s"
+}
+
+currentTime
+{
+ type:  flt(64,IEEE)*
+ alias: "currentTime"
+ desc:  "Current simulation time. Increments with execution of Timer Task 1."
+ flags: SYSTEM|READONLY
+ unit:  "s"
+}
+
+modelStepSize
+{
+ type:  flt(64,IEEE)
+ alias: "modelStepSize"
+ desc:  "Fixed step size of the model, sample time of Timer Task 1."
+ flags: SYSTEM|READONLY
+ unit:  "s"
+}
+
+simState
+{
+ type:  int(32)
+ alias: "simState"
+ desc:  "Simulation state: STOP=0 PAUSE=1 RUN=2"
+ flags: SYSTEM
+ unit:  "-"
+}
+
+msg_last_error_no
+{
+ type:  uint(32)
+ alias: "errorNumber"
+ desc:  "Error number of last error message (zero if no error)."
+ unit:  "-"
+ flags: SYSTEM|READONLY
+}
+
+rtiAssertionMode
+{
+ type:  int(32)
+ alias: "rtiAssertionMode"
+ desc:  "Assertion Mode: OFF=0 WARN=1 STOP=2"
+ flags: SYSTEM
+ unit:  "-"
+}
+
+p_dsts_sum_of_reset_time
+{
+ type:  flt(64,IEEE)*
+ alias: "sumOfResetTime"
+ desc:  "Internal variable for summing up reset time."
+ unit:  "s"
+ flags: SYSTEM|READONLY|HIDDEN
+}
+
+-- ******** Model variables ***************************************************
+
+group "Model Root"
+{
+ flags: COLLAPSED
+}
+	group "Data Store\nMemory" -- block-group
+	{
+	 block: "DataStoreMemory"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+
+		p_1_SCARA_215_real_T_0[26]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "InitialValue"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Data Store\nMemory"
+
+	group "Data Store\nMemory1" -- block-group
+	{
+	 block: "DataStoreMemory"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+
+		p_1_SCARA_215_real_T_0[27]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "InitialValue"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Data Store\nMemory1"
+
+	group "Data Store\nMemory2" -- block-group
+	{
+	 block: "DataStoreMemory"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+
+		p_1_SCARA_215_boolean_T_1[36]
+		{
+		 type:    uint(8)*
+		 alias:   "InitialValue"
+		 range:   < 0 ; 1 >
+		 bitmask: 0x01
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Data Store\nMemory2"
+
+	group "Data Store\nMemory3" -- block-group
+	{
+	 block: "DataStoreMemory"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+
+		p_1_SCARA_215_boolean_T_1[37]
+		{
+		 type:    uint(8)*
+		 alias:   "InitialValue"
+		 range:   < 0 ; 1 >
+		 bitmask: 0x01
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Data Store\nMemory3"
+
+	group "Constant" -- block-group
+	{
+	 block: "Constant"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		-- Skipping output Out1
+		p_1_SCARA_215_real_T_0[11]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Value"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Constant"
+
+	group "Constant1" -- block-group
+	{
+	 block: "Constant"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		-- Skipping output Out1
+		p_1_SCARA_215_real_T_0[6]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Value"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Constant1"
+
+	group "Constant2" -- block-group
+	{
+	 block: "Constant"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		-- Skipping output Out1
+		p_1_SCARA_215_real_T_0[1]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Value"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Constant2"
+
+	group "Constant3" -- block-group
+	{
+	 block: "Constant"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		-- Skipping output Out1
+		p_1_SCARA_215_real_T_0[0]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Value"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Constant3"
+
+	group "Data Store\nRead" -- block-group
+	{
+	 block: "DataStoreRead"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[4]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+
+
+	endgroup -- block-group "Data Store\nRead"
+
+	group "Data Store\nRead1" -- block-group
+	{
+	 block: "DataStoreRead"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[13]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+
+
+	endgroup -- block-group "Data Store\nRead1"
+
+	group "Data Store\nRead2" -- block-group
+	{
+	 block: "DataStoreRead"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_boolean_T_1[0]
+		{
+		 type:    uint(8)*
+		 alias:   "Out1"
+		 desc:    ""
+		 range:   < 0 ; 1 >
+		 bitmask: 0x01
+		 flags:   OUTPUT|READONLY
+		}
+
+
+	endgroup -- block-group "Data Store\nRead2"
+
+	group "Data Store\nRead3" -- block-group
+	{
+	 block: "DataStoreRead"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_boolean_T_1[9]
+		{
+		 type:    uint(8)*
+		 alias:   "Out1"
+		 desc:    ""
+		 range:   < 0 ; 1 >
+		 bitmask: 0x01
+		 flags:   OUTPUT|READONLY
+		}
+
+
+	endgroup -- block-group "Data Store\nRead3"
+
+	group "Data Store\nRead4" -- block-group
+	{
+	 block: "DataStoreRead"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[28]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+
+
+	endgroup -- block-group "Data Store\nRead4"
+
+	group "Data Store\nRead5" -- block-group
+	{
+	 block: "DataStoreRead"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[29]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+
+
+	endgroup -- block-group "Data Store\nRead5"
+
+	group "Data Store\nWrite" -- block-group
+	{
+	 block: "DataStoreWrite"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[0]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "In1"
+		 desc:    ""
+		 flags:   SINK|READONLY
+		}
+
+
+
+	endgroup -- block-group "Data Store\nWrite"
+
+	group "Data Store\nWrite2" -- block-group
+	{
+	 block: "DataStoreWrite"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_boolean_T_1[8]
+		{
+		 type:    uint(8)*
+		 alias:   "In1"
+		 desc:    ""
+		 range:   < 0 ; 1 >
+		 bitmask: 0x01
+		 flags:   SINK|READONLY
+		}
+
+
+
+	endgroup -- block-group "Data Store\nWrite2"
+
+	group "Data Store\nWrite3" -- block-group
+	{
+	 block: "DataStoreWrite"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[1]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "In1"
+		 desc:    ""
+		 flags:   SINK|READONLY
+		}
+
+
+
+	endgroup -- block-group "Data Store\nWrite3"
+
+	group "Gain1" -- block-group
+	{
+	 block: "Gain"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[20]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_SCARA_215_real_T_0[7]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Gain"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Gain1"
+
+	group "Gain2" -- block-group
+	{
+	 block: "Gain"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[9]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_SCARA_215_real_T_0[18]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Gain"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Gain2"
+
+	group "Gain3" -- block-group
+	{
+	 block: "Gain"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[24]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_SCARA_215_real_T_0[2]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Gain"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Gain3"
+
+	group "Gain4" -- block-group
+	{
+	 block: "Gain"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[18]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_SCARA_215_real_T_0[25]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Gain"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Gain4"
+
+	group "reg P1" -- block-group
+	{
+	 block: "Gain"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[22]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_SCARA_215_real_T_0[8]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Gain"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "reg P1"
+
+	group "reg P2" -- block-group
+	{
+	 block: "Gain"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[26]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_SCARA_215_real_T_0[3]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Gain"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "reg P2"
+
+	group "Logical\nOperator1" -- block-group
+	{
+	 block: "Logic"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_boolean_T_1[2]
+		{
+		 type:    uint(8)*
+		 alias:   "Out1"
+		 desc:    ""
+		 range:   < 0 ; 1 >
+		 bitmask: 0x01
+		 flags:   OUTPUT|READONLY
+		}
+
+
+	endgroup -- block-group "Logical\nOperator1"
+
+	group "Logical\nOperator3" -- block-group
+	{
+	 block: "Logic"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_boolean_T_1[11]
+		{
+		 type:    uint(8)*
+		 alias:   "Out1"
+		 desc:    ""
+		 range:   < 0 ; 1 >
+		 bitmask: 0x01
+		 flags:   OUTPUT|READONLY
+		}
+
+
+	endgroup -- block-group "Logical\nOperator3"
+
+	group "Memory1" -- block-group
+	{
+	 block: "Memory"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[3]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_SCARA_215_real_T_0[12]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "X0"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Memory1"
+
+	group "Memory2" -- block-group
+	{
+	 block: "Memory"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[12]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_SCARA_215_real_T_0[19]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "X0"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Memory2"
+
+	group "Rate Limiter1" -- block-group
+	{
+	 block: "RateLimiter"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[8]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_SCARA_215_real_T_0[15]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "RisingSlewLimit"
+		 flags:   PARAM
+		}
+		p_1_SCARA_215_real_T_0[16]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "FallingSlewLimit"
+		 flags:   PARAM
+		}
+		p_1_SCARA_215_real_T_0[17]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "InitialCondition"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Rate Limiter1"
+
+	group "Rate Limiter2" -- block-group
+	{
+	 block: "RateLimiter"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[17]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_SCARA_215_real_T_0[22]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "RisingSlewLimit"
+		 flags:   PARAM
+		}
+		p_1_SCARA_215_real_T_0[23]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "FallingSlewLimit"
+		 flags:   PARAM
+		}
+		p_1_SCARA_215_real_T_0[24]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "InitialCondition"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Rate Limiter2"
+
+	group "Saturation1" -- block-group
+	{
+	 block: "Saturate"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[23]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_SCARA_215_real_T_0[9]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "UpperLimit"
+		 flags:   PARAM
+		}
+		p_1_SCARA_215_real_T_0[10]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "LowerLimit"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Saturation1"
+
+	group "Saturation2" -- block-group
+	{
+	 block: "Saturate"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[27]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_SCARA_215_real_T_0[4]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "UpperLimit"
+		 flags:   PARAM
+		}
+		p_1_SCARA_215_real_T_0[5]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "LowerLimit"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Saturation2"
+
+	group "Sum" -- block-group
+	{
+	 block: "Sum"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[21]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+
+
+	endgroup -- block-group "Sum"
+
+	group "Sum1" -- block-group
+	{
+	 block: "Sum"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[25]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+
+
+	endgroup -- block-group "Sum1"
+
+	group "Switch" -- block-group
+	{
+	 block: "Switch"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[5]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_SCARA_215_real_T_0[13]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Threshold"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Switch"
+
+	group "Switch1" -- block-group
+	{
+	 block: "Switch"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[6]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_SCARA_215_real_T_0[14]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Threshold"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Switch1"
+
+	group "Switch2" -- block-group
+	{
+	 block: "Switch"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[14]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_SCARA_215_real_T_0[20]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Threshold"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Switch2"
+
+	group "Switch3" -- block-group
+	{
+	 block: "Switch"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[15]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_SCARA_215_real_T_0[21]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Threshold"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Switch3"
+
+	group "Switch4" -- block-group
+	{
+	 block: "Switch"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[7]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+
+
+	endgroup -- block-group "Switch4"
+
+	group "Switch5" -- block-group
+	{
+	 block: "Switch"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[16]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+
+
+	endgroup -- block-group "Switch5"
+
+	group "Switch6" -- block-group
+	{
+	 block: "Switch"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[0]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+
+
+	endgroup -- block-group "Switch6"
+
+	group "Switch7" -- block-group
+	{
+	 block: "Switch"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_SCARA_215_real_T_0[1]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+
+
+	endgroup -- block-group "Switch7"
+
+  
+  
+	group "DS1104BIT_IN_C0" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+		p_0_SCARA_215_boolean_T_1[1]
+		{
+		 type:    uint(8)*
+		 alias:   "Dig_in"
+		 desc:    ""
+		 range:   < 0 ; 1 >
+		 bitmask: 0x01
+		 flags:   OUTPUT|READONLY
+		}
+
+	endgroup -- subsystem-group "DS1104BIT_IN_C0"
+  
+  
+	group "DS1104BIT_IN_C1" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+		p_0_SCARA_215_boolean_T_1[10]
+		{
+		 type:    uint(8)*
+		 alias:   "Dig_in"
+		 desc:    ""
+		 range:   < 0 ; 1 >
+		 bitmask: 0x01
+		 flags:   OUTPUT|READONLY
+		}
+
+	endgroup -- subsystem-group "DS1104BIT_IN_C1"
+  
+  
+	group "DS1104DAC_C1" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+
+	endgroup -- subsystem-group "DS1104DAC_C1"
+  
+  
+	group "DS1104DAC_C2" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+
+	endgroup -- subsystem-group "DS1104DAC_C2"
+  
+  
+	group "DS1104ENC_POS_C2" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+		p_0_SCARA_215_real_T_0[11]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Enc position"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_0_SCARA_215_real_T_0[19]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Enc delta position"
+		 desc:    "No data (unused channel) "
+		 flags:   OUTPUT|READONLY
+		}
+
+	endgroup -- subsystem-group "DS1104ENC_POS_C2"
+  
+  
+	group "DS1104ENC_SETUP" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+
+	endgroup -- subsystem-group "DS1104ENC_SETUP"
+  
+  
+	group "DS1104ENC_SET_POS_C1" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+
+	endgroup -- subsystem-group "DS1104ENC_SET_POS_C1"
+  
+  
+	group "DS1104ENC_SET_POS_C2" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+
+	endgroup -- subsystem-group "DS1104ENC_SET_POS_C2"
+  
+  
+	group "Detect Fall\nNonpositive" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+		p_0_SCARA_215_boolean_T_1[8]
+		{
+		 type:    uint(8)*
+		 alias:   "Y"
+		 desc:    ""
+		 range:   < 0 ; 1 >
+		 bitmask: 0x01
+		 flags:   OUTPUT|READONLY
+		}
+
+		group "FixPt\nRelational\nOperator" -- block-group
+		{
+		 block: "RelationalOperator"
+		 desc:  ""
+		 flags: BLOCK|COLLAPSED
+		}
+			p_0_SCARA_215_boolean_T_1[8]
+			{
+			 type:    uint(8)*
+			 alias:   "Out1"
+			 desc:    ""
+			 range:   < 0 ; 1 >
+			 bitmask: 0x01
+			 flags:   OUTPUT|READONLY
+			}
+
+
+		endgroup -- block-group "FixPt\nRelational\nOperator"
+
+		group "Delay Input1" -- block-group
+		{
+		 block: "UnitDelay"
+		 desc:  "\nStore in Global RAM"
+		 flags: BLOCK|COLLAPSED
+		}
+			p_0_SCARA_215_boolean_T_1[7]
+			{
+			 type:    uint(8)*
+			 alias:   "Out1"
+			 desc:    ""
+			 range:   < 0 ; 1 >
+			 bitmask: 0x01
+			 flags:   OUTPUT|READONLY
+			}
+			p_1_SCARA_215_boolean_T_1[18]
+			{
+			 type:    uint(8)*
+			 alias:   "InitialCondition"
+			 range:   < 0 ; 1 >
+			 bitmask: 0x01
+			 flags:   PARAM
+			}
+
+
+		endgroup -- block-group "Delay Input1"
+
+  
+  
+		group "Nonpositive" -- subsystem-group
+		{
+		 flags: COLLAPSED
+		 desc:  ""
+		}
+
+			p_0_SCARA_215_boolean_T_1[6]
+			{
+			 type:    uint(8)*
+			 alias:   "y"
+			 desc:    ""
+			 range:   < 0 ; 1 >
+			 bitmask: 0x01
+			 flags:   OUTPUT|READONLY
+			}
+
+			group "Constant" -- block-group
+			{
+			 block: "Constant"
+			 desc:  ""
+			 flags: BLOCK|COLLAPSED
+			}
+				-- Skipping output Out1
+				p_1_SCARA_215_boolean_T_1[17]
+				{
+				 type:    uint(8)*
+				 alias:   "Value"
+				 range:   < 0 ; 1 >
+				 bitmask: 0x01
+				 flags:   PARAM
+				}
+
+
+			endgroup -- block-group "Constant"
+
+			group "Compare" -- block-group
+			{
+			 block: "RelationalOperator"
+			 desc:  ""
+			 flags: BLOCK|COLLAPSED
+			}
+				p_0_SCARA_215_boolean_T_1[6]
+				{
+				 type:    uint(8)*
+				 alias:   "Out1"
+				 desc:    ""
+				 range:   < 0 ; 1 >
+				 bitmask: 0x01
+				 flags:   OUTPUT|READONLY
+				}
+
+
+			endgroup -- block-group "Compare"
+
+
+
+		endgroup -- subsystem-group "Nonpositive"
+
+
+	endgroup -- subsystem-group "Detect Fall\nNonpositive"
+  
+  
+	group "RTI Data" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+
+	endgroup -- subsystem-group "RTI Data"
+  
+  
+	group "S-R\nFlip-Flop" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+		p_0_SCARA_215_boolean_T_1[4]
+		{
+		 type:    uint(8)*
+		 alias:   "Q"
+		 desc:    ""
+		 range:   < 0 ; 1 >
+		 bitmask: 0x01
+		 flags:   OUTPUT|READONLY
+		}
+		p_0_SCARA_215_boolean_T_1[5]
+		{
+		 type:    uint(8)*
+		 alias:   "!Q"
+		 desc:    ""
+		 range:   < 0 ; 1 >
+		 bitmask: 0x01
+		 flags:   OUTPUT|READONLY
+		}
+
+		group "Logic" -- block-group
+		{
+		 block: "CombinatorialLogic"
+		 desc:  ""
+		 flags: BLOCK|COLLAPSED
+		}
+			p_0_SCARA_215_boolean_T_1[4]
+			{
+			 type:    SCARA_215_ArrayDT8_2*
+			 alias:   "Out1"
+			 desc:    ""
+			 range:   < 0 ; 1 >
+			 bitmask: 0x01
+			 flags:   OUTPUT|READONLY
+			}
+			p_1_SCARA_215_boolean_T_1[1]
+			{
+			 type:    SCARA_215_ArrayDT8_8_2_Col*
+			 alias:   "TruthTable"
+			 range:   < 0 ; 1 >
+			 bitmask: 0x01
+			 flags:   PARAM
+			}
+
+
+		endgroup -- block-group "Logic"
+
+		group "Memory" -- block-group
+		{
+		 block: "Memory"
+		 desc:  ""
+		 flags: BLOCK|COLLAPSED
+		}
+			p_0_SCARA_215_boolean_T_1[3]
+			{
+			 type:    uint(8)*
+			 alias:   "Out1"
+			 desc:    ""
+			 range:   < 0 ; 1 >
+			 bitmask: 0x01
+			 flags:   OUTPUT|READONLY
+			}
+			p_1_SCARA_215_boolean_T_1[0]
+			{
+			 type:    uint(8)*
+			 alias:   "X0"
+			 range:   < 0 ; 1 >
+			 bitmask: 0x01
+			 flags:   PARAM
+			}
+
+
+		endgroup -- block-group "Memory"
+
+
+
+	endgroup -- subsystem-group "S-R\nFlip-Flop"
+  
+  
+	group "S-R\nFlip-Flop1" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+		p_0_SCARA_215_boolean_T_1[13]
+		{
+		 type:    uint(8)*
+		 alias:   "Q"
+		 desc:    ""
+		 range:   < 0 ; 1 >
+		 bitmask: 0x01
+		 flags:   OUTPUT|READONLY
+		}
+		p_0_SCARA_215_boolean_T_1[14]
+		{
+		 type:    uint(8)*
+		 alias:   "!Q"
+		 desc:    ""
+		 range:   < 0 ; 1 >
+		 bitmask: 0x01
+		 flags:   OUTPUT|READONLY
+		}
+
+		group "Logic" -- block-group
+		{
+		 block: "CombinatorialLogic"
+		 desc:  ""
+		 flags: BLOCK|COLLAPSED
+		}
+			p_0_SCARA_215_boolean_T_1[13]
+			{
+			 type:    SCARA_215_ArrayDT8_2*
+			 alias:   "Out1"
+			 desc:    ""
+			 range:   < 0 ; 1 >
+			 bitmask: 0x01
+			 flags:   OUTPUT|READONLY
+			}
+			p_1_SCARA_215_boolean_T_1[20]
+			{
+			 type:    SCARA_215_ArrayDT8_8_2_Col*
+			 alias:   "TruthTable"
+			 range:   < 0 ; 1 >
+			 bitmask: 0x01
+			 flags:   PARAM
+			}
+
+
+		endgroup -- block-group "Logic"
+
+		group "Memory" -- block-group
+		{
+		 block: "Memory"
+		 desc:  ""
+		 flags: BLOCK|COLLAPSED
+		}
+			p_0_SCARA_215_boolean_T_1[12]
+			{
+			 type:    uint(8)*
+			 alias:   "Out1"
+			 desc:    ""
+			 range:   < 0 ; 1 >
+			 bitmask: 0x01
+			 flags:   OUTPUT|READONLY
+			}
+			p_1_SCARA_215_boolean_T_1[19]
+			{
+			 type:    uint(8)*
+			 alias:   "X0"
+			 range:   < 0 ; 1 >
+			 bitmask: 0x01
+			 flags:   PARAM
+			}
+
+
+		endgroup -- block-group "Memory"
+
+
+
+	endgroup -- subsystem-group "S-R\nFlip-Flop1"
+  
+  
+	group "_DS1104ENC_POS_C1" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+		p_0_SCARA_215_real_T_0[2]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Enc position"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_0_SCARA_215_real_T_0[10]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Enc delta position"
+		 desc:    "No data (unused channel) "
+		 flags:   OUTPUT|READONLY
+		}
+
+	endgroup -- subsystem-group "_DS1104ENC_POS_C1"
+
+
+
+
+endgroup -- "Model Root"
+-- ******** Tunable Parameters ************************************************
+
+group "Tunable Parameters"
+{
+ flags: COLLAPSED
+}
+
+
+endgroup
+
+
+-- ******** State Machine Data ************************************************
+
+-- No Stateflow chart within the model.
+
+
+-- ******** Data Store Memories ***********************************************
+
+group "Data Stores"
+{
+ flags: COLLAPSED
+}
+	p_2_SCARA_215_real_T_0[4]
+	{
+	 type:   flt(64,IEEE)*
+	 alias:  "WZ1"
+	 origin: "SCARA_215/Data Store\nMemory"
+	 flags:  DSM
+	}
+	p_2_SCARA_215_real_T_0[5]
+	{
+	 type:   flt(64,IEEE)*
+	 alias:  "WZ2"
+	 origin: "SCARA_215/Data Store\nMemory1"
+	 flags:  DSM
+	}
+	p_2_SCARA_215_boolean_T_1[3]
+	{
+	 type:   uint(8)*
+	 alias:  "bazowanie1"
+	 origin: "SCARA_215/Data Store\nMemory2"
+	 range:   < 0 ; 1 >
+	 bitmask: 0x01
+	 flags:  DSM
+	}
+	p_2_SCARA_215_boolean_T_1[4]
+	{
+	 type:   uint(8)*
+	 alias:  "bazowanie2"
+	 origin: "SCARA_215/Data Store\nMemory3"
+	 range:   < 0 ; 1 >
+	 bitmask: 0x01
+	 flags:  DSM
+	}
+endgroup
+
+
+-- ******** Labels ************************************************************
+
+-- Generation of labels turned off with TRCGenerateLabels option.
+
+-- ******** RTT Dynamic Variables *********************************************
+
+-- Generation of RTT Dynamic Variables turned off with EnableRealTimeTesting option.
+
+-- ******** User variables from model_usr.trc *********************************
+
+-- RTI_USR_TRC_BEGIN
+
+-- No user file SCARA_215_usr.trc found.
+
+-- RTI_USR_TRC_END
+-- ******** Task Information variables ****************************************
+
+group "Task Info"
+{
+ flags: COLLAPSED
+}
+  group "Timer Task 1"
+  {
+   flags: COLLAPSED
+  }
+
+  pRti_TIMERA_STime
+  {
+   type:  flt(64,IEEE)*
+   alias: "sampleTime"
+   flags: SYSTEM|READONLY
+  }
+  pRti_TIMERA_TTime
+  {
+   type:  flt(64,IEEE)*
+   alias: "turnaroundTime"
+   flags: SYSTEM|READONLY
+  }
+  pRti_TIMERA_TState
+  {
+   type:  int(32)*
+   alias: "state"
+   flags: SYSTEM|READONLY
+  }
+  pRti_TIMERA_OType
+  {
+   type:  int(32)*
+   alias: "overrunCheckType"
+   flags: SYSTEM|READONLY
+  }
+  pRti_TIMERA_OMax
+  {
+   type:  int(32)*
+   alias: "overrunQueueMax"
+   flags: SYSTEM|READONLY
+  }
+  pRti_TIMERA_ORpt
+  {
+   type:  int(32)*
+   alias: "overrunQueueCount"
+   flags: SYSTEM|READONLY
+  }
+  pRti_TIMERA_OCnt
+  {
+   type:  int(32)*
+   alias: "overrunCount"
+   flags: SYSTEM|READONLY
+  }
+  pRti_TIMERA_TCnt
+  {
+   type:  flt(64,IEEE)*
+   alias: "taskCallCount"
+   flags: SYSTEM|READONLY
+  }
+  pRti_TIMERA_Prio
+  {
+   type:  int(32)*
+   alias: "priority"
+   flags: SYSTEM|READONLY
+  }
+  endgroup
+
+
+endgroup
+
+-- ******** [EOF] *************************************************************
+
+
+
