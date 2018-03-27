@@ -1,0 +1,65 @@
+-- ******** Tunable Parameters ************************************************
+
+group "Tunable Parameters"
+{
+ flags: COLLAPSED
+}
+
+
+endgroup
+
+
+-- ******** State Machine Data ************************************************
+
+-- No Stateflow chart within the model.
+
+
+-- ******** Data Store Memories ***********************************************
+
+group "Data Stores"
+{
+ flags: COLLAPSED
+}
+	p_2_SCARA_215_real_T_0[4]
+	{
+	 type:   flt(64,IEEE)*
+	 alias:  "WZ1"
+	 origin: "SCARA_215/Data Store\nMemory"
+	 flags:  DSM
+	}
+	p_2_SCARA_215_real_T_0[5]
+	{
+	 type:   flt(64,IEEE)*
+	 alias:  "WZ2"
+	 origin: "SCARA_215/Data Store\nMemory1"
+	 flags:  DSM
+	}
+	p_2_SCARA_215_boolean_T_1[3]
+	{
+	 type:   uint(8)*
+	 alias:  "bazowanie1"
+	 origin: "SCARA_215/Data Store\nMemory2"
+	 range:   < 0 ; 1 >
+	 bitmask: 0x01
+	 flags:  DSM
+	}
+	p_2_SCARA_215_boolean_T_1[4]
+	{
+	 type:   uint(8)*
+	 alias:  "bazowanie2"
+	 origin: "SCARA_215/Data Store\nMemory3"
+	 range:   < 0 ; 1 >
+	 bitmask: 0x01
+	 flags:  DSM
+	}
+endgroup
+
+
+-- ******** Labels ************************************************************
+
+-- Generation of labels turned off with TRCGenerateLabels option.
+
+-- ******** RTT Dynamic Variables *********************************************
+
+-- Generation of RTT Dynamic Variables turned off with EnableRealTimeTesting option.
+

@@ -1,0 +1,22 @@
+%implements s0_b0_dfhme_Update "C"
+
+%function Update(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%<SLibCGIRDumpSystemUserCode(0, "Update", "Header")>\
+%<SLibCGIRDumpSystemUserCode(0, "Update", "Body")>\
+/* Update for Memory: '<Root>/Memory1' */
+SCARA_15_DW.Memory1_PreviousInput = SCARA_15_B.Switch1;
+/* Update for Memory: '<Root>/Memory2' */
+SCARA_15_DW.Memory2_PreviousInput = SCARA_15_B.Switch3;
+%<SLibCGIRDumpSystemUserCode(0, "Update", "Trailer")>\
+%closefile cfgTxt
+%<cfgTxt>
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Update(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 3, fcnProtoType)>
+%endfunction

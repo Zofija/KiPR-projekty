@@ -1,0 +1,26 @@
+%implements s0_b0_dfhme_InitializeConditions "C"
+
+%function InitializeConditions(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%<SLibInsertAsyncTaskInitializeCode(system)>
+%<SLibWriteMachineInitialize()>
+/* InitializeConditions for Memory: '<Root>/Memory1' */
+SCARA_15_DW.Memory1_PreviousInput = SCARA_15_P.Memory1_X0;
+/* InitializeConditions for RateLimiter: '<Root>/Rate Limiter1' */
+SCARA_15_DW.PrevY = SCARA_15_P.RateLimiter1_IC;
+/* InitializeConditions for Memory: '<Root>/Memory2' */
+SCARA_15_DW.Memory2_PreviousInput = SCARA_15_P.Memory2_X0;
+/* InitializeConditions for RateLimiter: '<Root>/Rate Limiter2' */
+SCARA_15_DW.PrevY_f = SCARA_15_P.RateLimiter2_IC;
+%<SLibInsertInitPeriodicCStatesFcn(system)>
+%closefile cfgTxt
+%<cfgTxt>
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void InitializeConditions(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 1, fcnProtoType)>
+%endfunction
