@@ -1,0 +1,122 @@
+-- ******** Tunable Parameters ************************************************
+
+group "Tunable Parameters"
+{
+ flags: COLLAPSED
+}
+
+
+endgroup
+
+
+-- ******** State Machine Data ************************************************
+
+-- No Stateflow chart within the model.
+
+
+-- ******** Data Store Memories ***********************************************
+
+group "Data Stores"
+{
+ flags: COLLAPSED
+}
+	p_2_SCARA_215_real_T_0[8]
+	{
+	 type:   flt(64,IEEE)*
+	 alias:  "WZ1"
+	 origin: "SCARA_215/Data Store\nMemory"
+	 flags:  DSM
+	}
+	p_2_SCARA_215_real_T_0[9]
+	{
+	 type:   flt(64,IEEE)*
+	 alias:  "WZ2"
+	 origin: "SCARA_215/Data Store\nMemory1"
+	 flags:  DSM
+	}
+	p_2_SCARA_215_boolean_T_1[3]
+	{
+	 type:   uint(8)*
+	 alias:  "V_koordynacja_ON"
+	 origin: "SCARA_215/Data Store\nMemory10"
+	 range:   < 0 ; 1 >
+	 bitmask: 0x01
+	 flags:  DSM
+	}
+	p_2_SCARA_215_boolean_T_1[4]
+	{
+	 type:   uint(8)*
+	 alias:  "bazowanie1"
+	 origin: "SCARA_215/Data Store\nMemory2"
+	 range:   < 0 ; 1 >
+	 bitmask: 0x01
+	 flags:  DSM
+	}
+	p_2_SCARA_215_boolean_T_1[5]
+	{
+	 type:   uint(8)*
+	 alias:  "bazowanie2"
+	 origin: "SCARA_215/Data Store\nMemory3"
+	 range:   < 0 ; 1 >
+	 bitmask: 0x01
+	 flags:  DSM
+	}
+	p_2_SCARA_215_boolean_T_1[6]
+	{
+	 type:   uint(8)*
+	 alias:  "V_zadana_ON"
+	 origin: "SCARA_215/Data Store\nMemory4"
+	 range:   < 0 ; 1 >
+	 bitmask: 0x01
+	 flags:  DSM
+	}
+	p_2_SCARA_215_real_T_0[10]
+	{
+	 type:   flt(64,IEEE)*
+	 alias:  "V_zadana_wartosc"
+	 origin: "SCARA_215/Data Store\nMemory5"
+	 flags:  DSM
+	}
+	p_2_SCARA_215_boolean_T_1[7]
+	{
+	 type:   uint(8)*
+	 alias:  "wyzwolenie"
+	 origin: "SCARA_215/Data Store\nMemory6"
+	 range:   < 0 ; 1 >
+	 bitmask: 0x01
+	 flags:  DSM
+	}
+	p_2_SCARA_215_boolean_T_1[8]
+	{
+	 type:   uint(8)*
+	 alias:  "wyzwalanie_ON"
+	 origin: "SCARA_215/Data Store\nMemory7"
+	 range:   < 0 ; 1 >
+	 bitmask: 0x01
+	 flags:  DSM
+	}
+	p_2_SCARA_215_real_T_0[11]
+	{
+	 type:   flt(64,IEEE)*
+	 alias:  "wspolczynnik_1"
+	 origin: "SCARA_215/Data Store\nMemory8"
+	 flags:  DSM
+	}
+	p_2_SCARA_215_real_T_0[12]
+	{
+	 type:   flt(64,IEEE)*
+	 alias:  "wspolczynnik_2"
+	 origin: "SCARA_215/Data Store\nMemory9"
+	 flags:  DSM
+	}
+endgroup
+
+
+-- ******** Labels ************************************************************
+
+-- Generation of labels turned off with TRCGenerateLabels option.
+
+-- ******** RTT Dynamic Variables *********************************************
+
+-- Generation of RTT Dynamic Variables turned off with EnableRealTimeTesting option.
+
